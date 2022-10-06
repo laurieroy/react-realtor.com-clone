@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import OAuth from "../components/OAuth";
 
 export default function Signin() {
   const [formData, setFormData] = useState({
@@ -78,14 +79,18 @@ export default function Signin() {
                 </Link>
               </p>
             </div>
+
+            <button
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium uppercase rounded transition duration-150 ease-in-out shadow-md hover:shadow-lg active:bg-blue-800 px-7 py-3"
+              type="submit"
+            >
+              Sign in
+            </button>
+            <div className="my-4 before:border-t flex before:flex-1 before:border-gray-300 items-center after:border-t after:flex-1 after:border-gray-300">
+              <p className="text-center font-semibold mx-4">OR</p>
+            </div>
+            <OAuth />
           </form>
-          <button
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium uppercase rounded transition duration-150 ease-in-out shadow-md hover:shadow-lg active:bg-blue-800 px-7 py-3"
-            type="submit"
-          >
-            Sign in
-          </button>
-          
         </div>
       </div>
     </section>
