@@ -7,6 +7,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Offers from "./pages/Offers";
+import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
@@ -18,7 +19,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<PrivateRoute />}>
+            <Route path="/profile" element={<Profile />} />
+          </Route>
           <Route path="/sign-in" element={<Signin />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/offers" element={<Offers />} />
