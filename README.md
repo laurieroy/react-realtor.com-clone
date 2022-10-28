@@ -1,4 +1,14 @@
-# Getting Started with Create React App
+# Realtor clone
+
+This React18 project uses TailwindCSS and react router 6.
+
+Errors are displayed with react toast.
+
+The backend and authentication is handled by firebase.
+
+It uses the google Geocoding API to convert addresses to latitude and longitude.
+
+I originally built it following a [tutorial](https://www.udemy.com/course/reactjs-firebase-project), but have made some updates.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
