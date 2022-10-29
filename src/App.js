@@ -8,6 +8,7 @@ import EditListing from './pages/EditListing';
 import ForgotPassword from './pages/ForgotPassword';
 import Header from './components/Header';
 import Home from './pages/Home';
+import Listing from './pages/Listing';
 import Offers from './pages/Offers';
 import PrivateRoute from './components/PrivateRoute';
 import Profile from './pages/Profile';
@@ -33,6 +34,7 @@ function App() {
             <Route path='/edit-listing/:listingId' element={<EditListing />} />
           </Route>
           <Route path='/offers' element={<Offers />} />
+          <Route path='/category/:category/:listingId' element={<Listing />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
         </Routes>
       </Router>
