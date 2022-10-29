@@ -2,7 +2,9 @@
 
 This React18 project uses TailwindCSS and react router 6.
 
-Errors are displayed with react toast.
+Errors are displayed with react-toastify.
+
+Time ago is formatted with react-moment.
 
 The backend and authentication is handled by firebase.
 
