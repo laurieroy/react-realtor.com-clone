@@ -1,6 +1,62 @@
+import { doc, getDoc } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, {
+  Autoplay,
+  EffectFade,
+  Navigation,
+  Pagination,
+} from 'swiper';
+import 'swiper/css/bundle';
+import Spinner from '../components/Spinner';
+import { db } from '../firebase';
 
 export default function Listing() {
-	return (
-		<div>Listing</div>
-	)
+  const params = useParams();
+  const [listing, setListing] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchListing() {
+      const docRef = doc(db, 'listings', params.listingId);
+      const docSnap = await getDoc(docRef);
+      SwiperCore.use([Autoplay, Navigation, Pagination]);
+
+      if (docSnap.exists()) {
+        setListing(docSnap.data());
+        setLoading(false);
+        console.log(listing);
+      }
+    }
+
+    fetchListing();
+  }, [params.listingId]);
+
+  if (loading) return <Spinner />;
+
+  return (
+    <main>
+      <Swiper
+        slidesPerView={1}
+        navigation
+        pagination={{ type: 'progressbar' }}
+        effect='fade'
+        modules={[EffectFade]}
+        autoplay={{ delay: 3000 }}
+      >
+        {listing.imgUrls.map((url, index) => (
+          <SwiperSlide key={index}>
+            <div
+              className='relative w-full overflow-hidden h-[300px]'
+              style={{
+                background: `url(${listing.imgUrls[index]}) center no-repeat`,
+                backgroundSize: 'cover',
+              }}
+            ></div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </main>
+  );
 }
