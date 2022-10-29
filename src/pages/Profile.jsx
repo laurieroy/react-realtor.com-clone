@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getAuth, updateProfile } from 'firebase/auth';
 import {
   collection,
+  deleteDoc,
   doc,
   getDocs,
   orderBy,
@@ -81,6 +82,21 @@ export default function Profile() {
     fetchUserListings();
   }, [auth.currentUser.uid]);
 
+  async function onDelete(listingId) {
+    if (window.confirm('Are you sure you want to delete?')) {
+      await deleteDoc(doc(db, 'listings', listingId));
+      const updatedListings = listings.filter(
+        (listing) => listing.id !== listingId
+      );
+      setListings(updatedListings);
+      toast.success('Successfully deleted the listing');
+    }
+  }
+
+  function onEdit(listingId) {
+    navigate(`/edit-listing/${listingId}`);
+  }
+
   return (
     <>
       <section className='max-w-6xl mx-auto flex flex-col justify-center items-center'>
@@ -157,6 +173,8 @@ export default function Profile() {
                   key={listing.id}
                   id={listing.id}
                   listing={listing.data}
+                  onDelete={() => onDelete(listing.id)}
+                  onEdit={() => onEdit(listing.id)}
                 />
               ))}
             </ul>
