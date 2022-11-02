@@ -15,6 +15,8 @@ I originally built it following a [tutorial](https://www.udemy.com/course/reactj
 ## TODO:
 * Refactor slider on listing page
 
+* Change offers to listings
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
