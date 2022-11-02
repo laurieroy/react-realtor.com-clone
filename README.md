@@ -12,6 +12,11 @@ It uses the google Geocoding API to convert addresses to latitude and longitude.
 
 I originally built it following a [tutorial](https://www.udemy.com/course/reactjs-firebase-project), but have made some updates.
 
+## TODO:
+* Refactor slider on listing page
+
+* Change offers to listings
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
