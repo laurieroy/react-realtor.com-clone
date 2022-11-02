@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router';
 export default function Slider() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
   SwiperCore.use([Autoplay, Navigation, Pagination]);
 
@@ -27,7 +27,7 @@ export default function Slider() {
       let listings = [];
 
       querySnap.forEach((doc) => {
-        return listings.push({ id: doc.id, data: doc.data });
+        return listings.push({ id: doc.id, data: doc.data() });
       });
       setListings(listings);
       setLoading(false);
@@ -46,25 +46,34 @@ export default function Slider() {
     listings && (
       <>
         <Swiper
-					slidesPerView={1}
-					navigation
-					pagination={{type: 'progressbar'}}
-					effect='fade'
-					modules={[EffectFade]}
-					autoplay={{delay: 3000 }}
-				>
+          slidesPerView={1}
+          navigation
+          pagination={{ type: 'progressbar' }}
+          effect='fade'
+          modules={[EffectFade]}
+          autoplay={{ delay: 3000 }}
+        >
           {listings.map(({ data, id }) => (
             <SwiperSlide
               key={id}
               onClick={() => navigate(`/category/${data.type}/${id}`)}
             >
               <div
-                className='w-full h-[300px] overflow-hidden'
+                className='w-full h-[300px] overflow-hidden relative'
                 style={{
                   background: `url(${data.imgUrls[0]}), center, no-repeat`,
                   backgroundSize: 'cover',
                 }}
-              ></div>
+              >
+                {' '}
+              </div>
+              <p className='text-[#f1faee] absolute left-1 top-3 font-medium max-w-[90%] bg-[#457b9d] shadow-lg opacity-90 p-2 rounded-br-3xl'>
+                {data.name}
+              </p>
+              <p className='text-[#f1faee] absolute left-1 bottom-1 font-semibold max-w-[90%] bg-[#e63946] shadow-lg opacity-90 p-2 rounded-tr-3xl'>
+                ${data.discountedPrice ?? data.regularPrice}
+                {data.type === 'rent' && ' / month'}
+              </p>
             </SwiperSlide>
           ))}
         </Swiper>
