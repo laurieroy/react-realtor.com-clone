@@ -46,7 +46,7 @@ export default function Listing() {
     }
 
     fetchListing();
-  }, [params.listingId]);
+  }, [listing, params.listingId]);
 
   if (loading) return <Spinner />;
 
