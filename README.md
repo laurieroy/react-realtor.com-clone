@@ -17,6 +17,8 @@ I originally built it following a [tutorial](https://www.udemy.com/course/reactj
 
 * Change offers to listings
 
+* Hide Load more if no more listings
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
